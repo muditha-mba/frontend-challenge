@@ -31,8 +31,8 @@ const LoginPage = () => {
       return setIsError(true);
     }
     try {
-      const res = await axios.post("/api", values);
-      dispatch(loginSuccess(res.data));
+      const res = await axios.post("https://fetest.kodeia.com/api", values);
+      dispatch(loginSuccess(res.data.data.id));
       navigate("/result");
     } catch (err) {
       dispatch(loginFailure(err));

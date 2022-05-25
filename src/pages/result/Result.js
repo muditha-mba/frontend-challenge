@@ -5,7 +5,7 @@ const Result = () => {
   const { currentUser } = useSelector((state) => state.user);
   return (
     <div className="result flex">
-      <span>{currentUser.data.id}</span>
+      <span>{currentUser}</span>
     </div>
   );
 };
