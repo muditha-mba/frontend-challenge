@@ -1,0 +1,79 @@
+.input-container {
+  width: 100%;
+  padding: 2.9rem 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.input-icon {
+  margin-left: 3rem;
+  margin-right: 2.3rem;
+}
+
+.input-container input {
+  font-family: Ubuntu-Regular;
+  height: 5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.2;
+  background: transparent;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  flex-grow: 1;
+}
+
+.input-container span {
+  position: absolute;
+  transform: translateY(5.5rem);
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background-color: #d41872;
+  transition: all 0.4s;
+}
+
+.input-error {
+  color: crimson;
+  position: absolute;
+  font-size: 1.8rem;
+  right: 1rem;
+  font-family: Ubuntu-Bold;
+  font-weight: bolder;
+  padding: 0.6rem 0.5rem 0.6rem 1rem;
+  border: 1px solid #fff;
+  display: none;
+}
+
+.input-container input[error="true"] + .input-error {
+  display: block;
+}
+
+.input-container input[focus="true"] + .input-error {
+  display: none;
+}
+
+.input-container:hover > .input-error > p:before {
+  content: attr(msg);
+}
+
+.input-container:hover > .input-error {
+  border: 1px solid crimson;
+  font-size: 1.3rem;
+}
+
+.input-container input:focus ~ span {
+  width: 100%;
+}
+
+@media only screen and (max-width: 997px) {
+  .input-error > p:before {
+    content: attr(msg);
+  }
+
+  .input-error {
+    border: 1px solid crimson;
+    font-size: 1.3rem;
+  }
+}
