@@ -38,10 +38,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div onSubmit={submitHandler} className="login">
+    <div className="login">
       <div className="login-wrapper flex">
         <h1>Account Login</h1>
-        <form action="submit" className="login-form flex">
+        <form onSubmit={submitHandler} className="login-form flex">
           <Input
             placeholder={"User name"}
             Icon={PersonOutlineOutlinedIcon}
