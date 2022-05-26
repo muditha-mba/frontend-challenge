@@ -2,17 +2,21 @@ import { useState } from "react";
 import "./Input.css";
 
 const Input = (props) => {
-  const { Icon, errorMessage, isError, onChange, romoveError, ...inputProps } =
-    props;
+  const { Icon, errorMessage, onChange, isSubmit, val, ...inputProps } = props;
   const [isFocus, setIsFocus] = useState(false);
 
+  let error = false;
+
+  if (val === "" && isSubmit) {
+    error = true;
+  }
+
   const focusHandler = (e) => {
-    setIsFocus(!isFocus);
-    romoveError();
+    setIsFocus(true);
   };
 
   const blurHandler = (e) => {
-    setIsFocus(!isFocus);
+    setIsFocus(false);
   };
 
   return (
@@ -31,7 +35,7 @@ const Input = (props) => {
         {...inputProps}
         onFocus={focusHandler}
         focus={isFocus.toString()}
-        error={isError.toString()}
+        error={error.toString()}
         onBlur={blurHandler}
         onChange={onChange}
       />

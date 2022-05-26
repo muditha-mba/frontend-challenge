@@ -13,13 +13,11 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
-  const [isError, setIsError] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const romoveError = () => {
-    setIsError(false);
-  };
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -27,15 +25,15 @@ const LoginPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (values.username === "" || values.password === "") {
-      return setIsError(true);
-    }
+    setIsSubmit(true);
+    if (values.username === "" || values.password === "") return;
+
     try {
       const res = await axios.post("https://fetest.kodeia.com/api", values);
       dispatch(loginSuccess(res.data.data.id));
       navigate("/result");
     } catch (err) {
-      dispatch(loginFailure(err));
+      dispatch(loginFailure(err.message));
     }
   };
 
@@ -51,8 +49,8 @@ const LoginPage = () => {
             name={"username"}
             onChange={onChange}
             errorMessage={"Enter username"}
-            isError={isError}
-            romoveError={romoveError}
+            isSubmit={isSubmit}
+            val={values.username}
           />
           <Input
             placeholder={"Password"}
@@ -61,8 +59,8 @@ const LoginPage = () => {
             name={"password"}
             onChange={onChange}
             errorMessage={"Enter password"}
-            isError={isError}
-            romoveError={romoveError}
+            isSubmit={isSubmit}
+            val={values.password}
           />
           <div className="login__button--container flex">
             <button className="flex">Login</button>
